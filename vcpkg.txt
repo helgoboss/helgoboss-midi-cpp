@@ -1,4 +1,2 @@
 ms-gsl
 catch2
---triplet
-x64-linux
