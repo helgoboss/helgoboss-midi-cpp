@@ -33,26 +33,39 @@ If you want an exception instead, define `GSL_THROW_ON_CONTRACT_VIOLATION`.
 
 #### Test
 ```
-ctest --build-and-test . build\msvc-test --build-target helgoboss-midi-tests --build-generator "Visual Studio 15" --test-command ctest
+ctest --build-and-test . build\win-test --build-target helgoboss-midi-tests --build-generator "Visual Studio 15" --test-command ctest
 ```
 
 #### Build
 ```
-cmake -G "Visual Studio 15" -B build\msvc
-cmake --build build\msvc --target helgoboss-midi --config "RelWithDebInfo"
+cmake -G "Visual Studio 15" -B build\win
+cmake --build build\win --target helgoboss-midi --config "RelWithDebInfo"
 ```
 
 ### Linux (Make)
 
 #### Test
 ```
-ctest --build-and-test . build/make-test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
+ctest --build-and-test . build/linux-test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
 ```
 
 #### Build
 ```
-mkdir -p build/make
-cd build/make
+mkdir -p build/linux
+cd build/linux
 cmake -G "Unix Makefiles" ../..
 cmake --build . --target helgoboss-midi --config "RelWithDebInfo"
+```
+
+### OS X (Xcode)
+
+#### Test
+```
+ctest --build-and-test . build/osx-test --build-target helgoboss-midi-tests --build-generator "Xcode" --test-command ctest
+```
+
+#### Build
+```
+cmake -G "Xcode" -B build\osx
+cmake --build build\osx --target helgoboss-midi --config "RelWithDebInfo"
 ```
