@@ -68,7 +68,7 @@ cd lib/vcpkg
 
 #### Test
 ```
-ctest --build-and-test . build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
+ctest --build-and-test . build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest -T Test --output-on-failure
 ```
 
 #### Build
