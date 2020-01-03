@@ -23,7 +23,7 @@ steps:
     vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt'
     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
 - script: |
-    ctest --build-and-test $(Build.SourcesDirectory)/build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest -T Test --output-on-failure
+    ctest --build-and-test $(Build.SourcesDirectory) $(Build.SourcesDirectory)/build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest -T Test --output-on-failure
   displayName: Build and execute tests
   env:
     CC: 'gcc-7'
