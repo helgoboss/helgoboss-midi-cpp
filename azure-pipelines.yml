@@ -1,0 +1,36 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self
+  submodules: true
+- task: Cache@2
+  displayName: "Cache vcpkg's artifacts"
+  inputs:
+    key: '"$(Build.SourcesDirectory)/vcpkg.txt" | "$(Build.SourcesDirectory)/.git/modules/lib/vcpkg/HEAD" | "$(Agent.OS)"'
+    path: '$(Build.SourcesDirectory)/lib/vcpkg'
+- task: run-vcpkg@0
+  displayName: Run vcpkg
+  inputs:
+    vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt'
+    vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
+- script: |
+    ctest --build-and-test $(Build.SourcesDirectory) $(Build.SourcesDirectory)/build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest -T Test --output-on-failure
+  displayName: Build and execute tests
+  env:
+    CC: 'gcc-7'
+    CXX: 'g++-7'
+- task: PublishTestResults@2
+  displayName: Publish test results
+  inputs:
+    testResultsFormat: 'CTest'
+    testResultsFiles: '**/Test.xml'
+    searchFolder: '$(Build.SourcesDirectory)/build/linux/test/Testing' 

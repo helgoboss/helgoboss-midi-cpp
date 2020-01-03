@@ -12,17 +12,12 @@ include_directories(lib/helgoboss-midi/include)
 add_subdirectory(lib/helgoboss-midi)
 ```
 
-This offers much flexibility because the library will be compiled from source as part of your larger project. To make 
-this work, you also need to provide the dependencies mentioned in the section below.
+This offers much flexibility because the library will be compiled from source as part of your larger project.
 
-## Dependencies
-
-This library depends on the following [vcpkg](https://github.com/microsoft/vcpkg) packages:
-- `ms-gsl` (for precondition checking)
-- `catch2` (for testing)
-
-For convenience, CMake will automatically pick up your vcpkg dependencies if you provide an environment variable
-`VCPKG_ROOT` pointing to the vcpkg directory.
+The library depends on certain packages mentioned in [vcpkg.txt](vcpkg.txt). These are 
+vcpkg-specific package names because we use [vcpkg](https://github.com/microsoft/vcpkg) as package manager. In your 
+application project, you probably have your own way of doing package management or you also use vcpkg but want 
+to have your own application-wide vcpkg package list.
 
 
 ## Configure
@@ -42,33 +37,59 @@ If you want an exception instead, define `GSL_THROW_ON_CONTRACT_VIOLATION`.
 
 ### Windows
 
+#### Prepare
+
+```sh
+cd lib/vcpkg
+bootstrap-vcpkg
+vcpkg install @../../vcpkg.txt
+```
+
 #### Test
 ```
-ctest --build-and-test . build\win-test --build-target helgoboss-midi-tests --build-generator "Visual Studio 15" --test-command ctest
+ctest --build-and-test . build\win\test --build-target helgoboss-midi-tests --build-generator "Visual Studio 15" --test-command ctest
 ```
 
 #### Build
 ```
-cmake -G "Visual Studio 15" -B build\win
-cmake --build build\win --target helgoboss-midi --config "RelWithDebInfo"
+cmake -G "Visual Studio 15" -B build\win\prod
+cmake --build build\win\prod --target helgoboss-midi --config "RelWithDebInfo"
 ```
 
 ### Linux
 
+#### Prepare
+
+```sh
+cd lib/vcpkg
+./bootstrap-vcpkg.sh
+./vcpkg install @../../vcpkg.txt
+```
+
 #### Test
 ```
-ctest --build-and-test . build/linux-test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
+ctest --build-and-test . build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
 ```
 
 #### Build
 ```
-mkdir -p build/linux
-cd build/linux
+mkdir -p build/linux/prod
+cd build/linux/prod
 cmake -G "Unix Makefiles" ../..
 cmake --build . --target helgoboss-midi --config "RelWithDebInfo"
 ```
 
 ### OS X
+
+#### Prepare
+
+#### Prepare
+
+```sh
+cd lib/vcpkg
+./bootstrap-vcpkg.sh
+./vcpkg install @../../vcpkg.txt
+```
 
 #### Test
 ```
