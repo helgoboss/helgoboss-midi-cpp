@@ -22,12 +22,14 @@ steps:
   inputs:
     vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt'
     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
-# - task: run-cmake@0
-#   inputs:
-#     cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
-#     useVcpkgToolchainFile: true
-#     cmakeBuildType: 'RelWithDebInfo'
-#     cmakeGenerator: 'UnixMakefiles'
-- task: CMake@1
+- task: run-cmake@0
+  env:
+    CXX: 'g++-7'
   inputs:
-    cmakeArgs: '-DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/lib/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-linux -G "Unix Makefiles"'
+    cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
+    useVcpkgToolchainFile: true
+    cmakeBuildType: 'RelWithDebInfo'
+    cmakeGenerator: 'UnixMakefiles'
+# - task: CMake@1
+#   inputs:
+#     cmakeArgs: '-DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/lib/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-linux -G "Unix Makefiles"'
