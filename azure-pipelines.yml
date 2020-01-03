@@ -12,14 +12,14 @@ pool:
 steps:
 - checkout: self
   submodules: true
-#- task: Cache@2
-#  displayName: 'Cache vcpkg's  artifacts'
-#  inputs:
-#    # As 'key' use the content of the response file, vcpkg's submodule fetched commit id and the platform name.
-#    # The key must be one liner, each segment separated by pipe char, non-path segments enclosed by
-#    # double quotes.
-#    key: $(Build.SourcesDirectory)/vcpkg.txt | "$(Build.SourcesDirectory)/.git/modules/vcpkg/HEAD" | "$(Agent.OS)"
-#    path: '$(Build.SourcesDirectory)/lib/vcpkg'
+- task: Cache@2
+  displayName: 'Cache vcpkg's  artifacts'
+  inputs:
+    # As 'key' use the content of the response file, vcpkg's submodule fetched commit id and the platform name.
+    # The key must be one liner, each segment separated by pipe char, non-path segments enclosed by
+    # double quotes.
+    key: $(Build.SourcesDirectory)/vcpkg.txt | "$(Build.SourcesDirectory)/.git/modules/lib/vcpkg/HEAD" | "$(Agent.OS)"
+    path: '$(Build.SourcesDirectory)/lib/vcpkg'
 - task: run-vcpkg@0
   displayName: 'Run vcpkg'
   inputs:
