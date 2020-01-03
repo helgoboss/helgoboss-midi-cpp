@@ -20,7 +20,7 @@ steps:
 - task: run-vcpkg@0
   displayName: Run vcpkg
   inputs:
-    vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt'
+    vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt --triplet x64-linux'
     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
 - script: |
     ctest --build-and-test $(Build.SourcesDirectory) $(Build.SourcesDirectory)/build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest -T Test --output-on-failure
