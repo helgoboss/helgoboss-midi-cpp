@@ -18,24 +18,19 @@ steps:
     key: '"$(Build.SourcesDirectory)/vcpkg.txt" | "$(Build.SourcesDirectory)/.git/modules/lib/vcpkg/HEAD" | "$(Agent.OS)"'
     path: '$(Build.SourcesDirectory)/lib/vcpkg'
 - task: run-vcpkg@0
-  displayName: 'Run vcpkg'
+  displayName: Run vcpkg
   inputs:
     vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt'
     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
 - script: |
-    ctest --build-and-test . build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
+    ctest --build-and-test $(Build.SourcesDirectory)/build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest -T Test --output-on-failure
+  displayName: Build and execute tests
   env:
     CC: 'gcc-7'
     CXX: 'g++-7'
-# - task: run-cmake@0
-#   env:
-#     CC: 'gcc-7'
-#     CXX: 'g++-7'
-#   inputs:
-#     cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
-#     useVcpkgToolchainFile: true
-#     cmakeBuildType: 'RelWithDebInfo'
-#     cmakeGenerator: 'UnixMakefiles'
-# - task: CMake@1
-#   inputs:
-#     cmakeArgs: '-DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/lib/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-linux -G "Unix Makefiles"'
+- task: PublishTestResults@2
+  displayName: Publish test results
+  inputs:
+    testResultsFormat: 'CTest'
+    testResultsFiles: '**/Test.xml'
+    searchFolder: '$(Build.SourcesDirectory)/build/linux/test/Testing' 
