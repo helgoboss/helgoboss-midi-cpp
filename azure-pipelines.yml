@@ -22,14 +22,20 @@ steps:
   inputs:
     vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt'
     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
-- task: run-cmake@0
+- script: |
+    ctest --build-and-test . build/linux/test --build-target helgoboss-midi-tests --build-generator "Unix Makefiles" --test-command ctest
   env:
+    CC: 'gcc-7'
     CXX: 'g++-7'
-  inputs:
-    cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
-    useVcpkgToolchainFile: true
-    cmakeBuildType: 'RelWithDebInfo'
-    cmakeGenerator: 'UnixMakefiles'
+# - task: run-cmake@0
+#   env:
+#     CC: 'gcc-7'
+#     CXX: 'g++-7'
+#   inputs:
+#     cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
+#     useVcpkgToolchainFile: true
+#     cmakeBuildType: 'RelWithDebInfo'
+#     cmakeGenerator: 'UnixMakefiles'
 # - task: CMake@1
 #   inputs:
 #     cmakeArgs: '-DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/lib/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-linux -G "Unix Makefiles"'
