@@ -18,13 +18,14 @@ steps:
 #    # double quotes.
 #    key: $(Build.SourcesDirectory)/vcpkg.txt | "$(Build.SourcesDirectory)/.git/modules/vcpkg/HEAD" | "$(Agent.OS)"
 #    path: '$(Build.SourcesDirectory)/lib/vcpkg'
-- task: run-vcpkg@0
-  displayName: 'Run vcpkg'
-  inputs:
-    vcpkgArguments: @$(Build.SourcesDirectory)/vcpkg.txt
-    vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
+# - task: run-vcpkg@0
+#   displayName: 'Run vcpkg'
+#   inputs:
+#     vcpkgArguments: @$(Build.SourcesDirectory)/vcpkg.txt
+#     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
 - task: run-cmake@0
-  displayName: 'Run CMake with CMakeSettings.json'
   inputs:
-    cmakeListsOrSettingsJson: 'CMakeLists.txt'
+    cmakeListsOrSettingsJson: 'CMakeListsTxtBasic'
     useVcpkgToolchainFile: true
+    cmakeBuildType: 'RelWithDebInfo'
+    cmakeGenerator: 'UnixMakefiles'
