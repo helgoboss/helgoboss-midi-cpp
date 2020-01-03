@@ -10,6 +10,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- checkout: self
+  submodules: true
 #- task: Cache@2
 #  displayName: 'Cache vcpkg's  artifacts'
 #  inputs:
