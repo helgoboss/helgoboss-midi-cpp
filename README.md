@@ -44,12 +44,12 @@ If you want an exception instead, define `GSL_THROW_ON_CONTRACT_VIOLATION`.
 ```sh
 cd lib/vcpkg
 bootstrap-vcpkg
-vcpkg install @../../vcpkg.txt
+vcpkg install @..\..\vcpkg.txt
 ```
 
 #### Test
 ```
-ctest --build-and-test . build\win\test --build-target helgoboss-midi-tests --build-generator "Visual Studio 15" --test-command ctest
+ctest --build-and-test . build\win\test --build-target helgoboss-midi-tests --build-generator "Visual Studio 15" --test-command ctest -T Test --output-on-failure
 ```
 
 #### Build
@@ -95,11 +95,11 @@ cd lib/vcpkg
 
 #### Test
 ```
-ctest --build-and-test . build/osx-test --build-target helgoboss-midi-tests --build-generator "Xcode" --test-command ctest
+ctest --build-and-test . build/osx/test --build-target helgoboss-midi-tests --build-generator "Xcode" --test-command ctest -T Test --output-on-failure
 ```
 
 #### Build
 ```
-cmake -G "Xcode" -B build\osx
-cmake --build build\osx --target helgoboss-midi --config "RelWithDebInfo"
+cmake -G "Xcode" -B build/osx/prod
+cmake --build build/osx/prod --target helgoboss-midi --config "RelWithDebInfo"
 ```
