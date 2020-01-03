@@ -2,6 +2,8 @@
 
 Reusable C++ code for dealing with MIDI messages
 
+[![Build Status](https://dev.azure.com/benjaminklum/helgoboss-midi/_apis/build/status/helgoboss.helgoboss-midi?branchName=master)](https://dev.azure.com/benjaminklum/helgoboss-midi/_build/latest?definitionId=1&branchName=master)
+
 ## Use
 
 This is a library supposed to be used within a larger C++ application project. Assuming your application project 
