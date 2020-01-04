@@ -27,7 +27,7 @@ set(SOURCES
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 target_include_directories(${PROJECT_NAME} INTERFACE include)
 install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib)
-install(DIRECTORY include/helgoboss-midi DESTINATION include)
+#install(DIRECTORY include/helgoboss-midi DESTINATION include)
 
 # Test target
 find_package(Catch2 CONFIG REQUIRED)
