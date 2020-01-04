@@ -77,8 +77,10 @@ ctest --build-and-test . build/linux/test --build-target helgoboss-midi-tests --
 ```
 mkdir -p build/linux/prod
 cd build/linux/prod
-cmake -G "Unix Makefiles" ../..
+cmake -G "Unix Makefiles" ../../..
 cmake --build . --target helgoboss-midi --config "RelWithDebInfo"
+# Or build and install
+sudo make install 
 ```
 
 ### OS X

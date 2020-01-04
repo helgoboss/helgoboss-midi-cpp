@@ -1,9 +1,14 @@
+# Support CMake version shipping with Ubuntu 18.04 LTS
 cmake_minimum_required(VERSION 3.10)
+
+# By default use locally own vcpkg for package searches
 if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   set(CMAKE_TOOLCHAIN_FILE "lib/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 endif ()
+
 project(helgoboss-midi)
 
+# Enforce pure C++17
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -19,8 +24,10 @@ set(SOURCES
     src/MidiParameterNumberMessage.cpp
     src/MidiParameterNumberMessageParser.cpp
     )
-add_library(${PROJECT_NAME} ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 target_include_directories(${PROJECT_NAME} INTERFACE include)
+install(TARGETS ${PROJECT_NAME} ARCHIVE DESTINATION lib)
+install(DIRECTORY include/helgoboss-midi DESTINATION include)
 
 # Test target
 find_package(Catch2 CONFIG REQUIRED)
