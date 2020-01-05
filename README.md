@@ -11,8 +11,8 @@ uses CMake as well, the easiest way to use it is to put this library in `lib/hel
 and adjust your `CMakeLists.txt` accordingly: 
 ```cmake
 add_subdirectory(lib/helgoboss-midi)
-find_package(helgoboss-midi 0.1.0 REQUIRED)
-target_link_libraries(your-target helgoboss-midi::helgoboss-midi)
+find_package(helgoboss-midi 0.1.0 CONFIG REQUIRED)
+target_link_libraries(your-target PRIVATE helgoboss-midi::helgoboss-midi)
 ```
 
 
