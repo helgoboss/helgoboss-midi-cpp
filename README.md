@@ -19,14 +19,14 @@ target_link_libraries(your-target helgoboss-midi::helgoboss-midi)
 The library depends on certain packages mentioned in [vcpkg.txt](vcpkg.txt). These are 
 vcpkg-specific package names because we use [vcpkg](https://github.com/microsoft/vcpkg) as package manager. If you 
 also use vcpkg for package management, you need to add all those packages to your application-wide vcpkg package list.
-If you don't, you need to take care of installing those dependencies yourself.
+If not, you need to take care of installing those dependencies yourself.
 
 ## Develop
 
 The following commands are tailored to Linux but need only minimal adjustments to be executed on OS X or Windows.
 
 ### Prepare
-```
+```sh
 cd lib/vcpkg
 ./bootstrap-vcpkg.sh
 ./vcpkg install @../../vcpkg.txt
@@ -34,13 +34,13 @@ cd lib/vcpkg
 
 ### Build
 CMake >= 3.13
-```
+```sh
 cmake -B build/linux
 cmake --build build/linux --config Release
 ```
 
 CMake < 3.13
-```
+```sh
 mkdir -p build/linux
 cd build/linux
 cmake ../..
@@ -48,13 +48,13 @@ cmake --build . --config Release
 ```
 
 ### Test
-```
+```sh
 cd build/linux
 ctest
 ```
 
 ### Install
 CMake >= 3.15
-```
+```sh
 cmake --install build/linux --prefix build/linux/test-install
 ```
