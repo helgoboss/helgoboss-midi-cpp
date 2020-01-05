@@ -38,4 +38,4 @@ steps:
   inputs:
     testResultsFormat: 'CTest'
     testResultsFiles: '**/Test.xml'
-    searchFolder: '$(Build.SourcesDirectory)/build/linux/test/Testing' 
+    searchFolder: '$(Build.SourcesDirectory)/build/linux/Testing'
