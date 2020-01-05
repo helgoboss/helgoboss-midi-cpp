@@ -39,7 +39,7 @@ set_target_properties(helgoboss-midi PROPERTIES CXX_EXTENSIONS OFF)
 include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 write_basic_package_version_file(helgoboss-midi-config-version.cmake COMPATIBILITY SameMajorVersion)
-install(DIRECTORY include/helgoboss-midi DESTINATION include)
+install(DIRECTORY include/helgoboss-midi DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 install(TARGETS helgoboss-midi
     EXPORT helgoboss-midi-config
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
