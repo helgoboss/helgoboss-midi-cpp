@@ -34,6 +34,7 @@ target_compile_definitions(helgoboss-midi PRIVATE GSL_THROW_ON_CONTRACT_VIOLATIO
 # We want strict C++-17 (as PUBLIC because we use C++-17 nested namespaces in public headers)
 target_compile_features(helgoboss-midi PUBLIC cxx_std_17)
 set_target_properties(helgoboss-midi PROPERTIES CXX_EXTENSIONS OFF)
+add_library(helgoboss-midi::helgoboss-midi ALIAS helgoboss-midi)
 
 # Install
 include(CMakePackageConfigHelpers)
@@ -52,7 +53,6 @@ install(EXPORT helgoboss-midi-config
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/helgoboss-midi-config-version.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/helgoboss-midi
     )
-add_library(helgoboss-midi::helgoboss-midi ALIAS helgoboss-midi)
 
 # Tests
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
