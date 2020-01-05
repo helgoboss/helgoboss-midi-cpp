@@ -23,9 +23,11 @@ steps:
     vcpkgArguments: '@$(Build.SourcesDirectory)/vcpkg.txt --triplet x64-linux'
     vcpkgDirectory: $(Build.SourcesDirectory)/lib/vcpkg
 - script: |
-    cmake -B build/linux
-    cmake --build build/linux --config Release
+    cmake --version
+    mkdir -p build/linux
     cd build/linux
+    cmake ../..
+    cmake --build . --config Release
     ctest -T Test --output-on-failure
   displayName: Build and execute tests
   env:
