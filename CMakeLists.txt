@@ -49,7 +49,7 @@ install(EXPORT helgoboss-midi-config
     NAMESPACE helgoboss-midi::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/helgoboss-midi
     )
-install(FILES helgoboss-midi-config-version.cmake
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/helgoboss-midi-config-version.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/helgoboss-midi
     )
 add_library(helgoboss-midi::helgoboss-midi ALIAS helgoboss-midi)
