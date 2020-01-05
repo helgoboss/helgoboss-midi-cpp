@@ -1,5 +1,5 @@
 #include <helgoboss-midi/MidiParameterNumberMessage.h>
-#include <helgoboss-midi/midi-util.h>
+#include "midi-util.h"
 #include <gsl/gsl>
 
 using std::array;

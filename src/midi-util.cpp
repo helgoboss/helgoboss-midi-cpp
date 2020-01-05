@@ -1,4 +1,4 @@
-#include <helgoboss-midi/midi-util.h>
+#include "midi-util.h"
 #include <gsl/gsl>
 
 namespace helgoboss::util {

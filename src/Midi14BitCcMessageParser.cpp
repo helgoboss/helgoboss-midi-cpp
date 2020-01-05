@@ -1,5 +1,5 @@
 #include <helgoboss-midi/Midi14BitCcMessageParser.h>
-#include <helgoboss-midi/midi-util.h>
+#include "midi-util.h"
 
 namespace helgoboss {
   Midi14BitCcMessage Midi14BitCcMessageParser::feed(const MidiMessage& msg) {

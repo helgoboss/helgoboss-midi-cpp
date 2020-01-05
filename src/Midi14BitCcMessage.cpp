@@ -1,5 +1,5 @@
 #include <helgoboss-midi/Midi14BitCcMessage.h>
-#include <helgoboss-midi/midi-util.h>
+#include "midi-util.h"
 #include <gsl/gsl>
 
 using std::array;

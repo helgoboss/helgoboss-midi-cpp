@@ -1,5 +1,5 @@
 #include <helgoboss-midi/MidiParameterNumberMessageParser.h>
-#include <helgoboss-midi/midi-util.h>
+#include "midi-util.h"
 
 namespace helgoboss {
   MidiParameterNumberMessage MidiParameterNumberMessageParser::feed(const MidiMessage& msg) {
