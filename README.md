@@ -6,20 +6,34 @@ Reusable C++ code for dealing with MIDI messages
 
 ## Use
 
-This is a library supposed to be used within a larger C++ application project. Assuming your application project 
-uses CMake as well, the easiest way to use it is to put this library in `lib/helgoboss-midi` (e.g. as Git submodule)
-and adjust your `CMakeLists.txt` accordingly: 
+This is a library supposed to be used within a larger C++ application project. Assuming your project uses CMake and this library is already available to CMake, all you need to do is to adjust your `CMakeLists.txt`:
+
 ```cmake
-add_subdirectory(lib/helgoboss-midi)
 find_package(helgoboss-midi 0.1.0 CONFIG REQUIRED)
 target_link_libraries(your-target PRIVATE helgoboss-midi::helgoboss-midi)
 ```
 
+Here are some solutions to make the library available to CMake.
 
-The library depends on certain packages mentioned in [vcpkg.txt](vcpkg.txt). These are 
-vcpkg-specific package names because we use [vcpkg](https://github.com/microsoft/vcpkg) as package manager. If you 
-also use vcpkg for package management, you need to add all those packages to your application-wide vcpkg package list.
-If not, you need to take care of installing those dependencies yourself.
+### Solution 1: vcpkg
+
+This assumes you have your application-wide [vcpkg](https://github.com/microsoft/vcpkg) instance at `lib/vcpkg`.
+
+1. Add https://github.com/helgoboss/helgoboss-vcpkg-overlays as Git submodule at `lib/helgoboss-vcpkg-overlays`
+2. Integrate this into your application-wide vcpkg response file (e.g. `vcpkg.txt`) and use vcpkg to install the added package:
+    ```
+    helgoboss-midi
+    --overlay-ports=../helgoboss-vcpkg-overlays/ports
+    ```
+
+### Solution 2: Submodule
+
+1. Install the dependencies of this library mentioned in [vcpkg.txt](vcpkg.txt) using whatever packagement management approach you prefer
+2. Copy this library to `lib/helgoboss-midi` (e.g. as Git submodule)
+3. Add the following to your `CMakeLists.txt` *before* `find_package`
+    ```cmake
+    add_subdirectory(lib/helgoboss-midi)
+    ```
 
 ## Develop
 
