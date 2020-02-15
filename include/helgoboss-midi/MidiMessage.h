@@ -1,6 +1,7 @@
 #pragma once
 
 namespace helgoboss {
+  // DONE-rust
   // The most low-level type of a MIDI message
   enum class MidiMessageType : unsigned char {
     // Channel messages = channel voice messages + channel mode messages (given value represents channel 0 status byte)
@@ -78,16 +79,19 @@ namespace helgoboss {
     unsigned char getStatusByte() const;
     unsigned char getDataByte1() const;
     unsigned char getDataByte2() const;
+    // DONE-rust
     MidiMessageType getType() const;
     MidiMessageSuperType getSuperType() const;
     MidiMessageMainCategory getMainCategory() const;
     int getChannel() const;
     // Returns false if the message type is NoteOn but the velocity is 0
+    // DONE-rust
     bool isNoteOn() const;
     // Also returns true if the message type is NoteOn but the velocity is 0
     bool isNoteOff() const;
     bool isNote() const;
     int getKeyNumber() const;
+    // DONE-rust
     int getVelocity() const;
     int getControllerNumber() const;
     int getControlValue() const;
