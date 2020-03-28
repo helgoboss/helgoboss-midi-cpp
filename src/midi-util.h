@@ -2,8 +2,10 @@
 
 namespace helgoboss::util {
   unsigned char extractLowNibbleFromByte(unsigned char byte);
+  // DONE-rust
   unsigned char extractHighNibbleFromByte(unsigned char byte);
   unsigned char withLowNibbleAdded(unsigned char byte, unsigned char lowNibble);
+  // DONE-rust
   unsigned char buildByteFromNibbles(unsigned char highNibble, unsigned char lowNibble);
   unsigned char extractLowByteFrom14BitValue(int value);
   unsigned char extractHighByteFrom14BitValue(int value);
