@@ -92,11 +92,13 @@ namespace helgoboss {
     MidiMessageMainCategory getMainCategory() const;
     int getChannel() const;
     // Returns false if the message type is NoteOn but the velocity is 0
+    // DONE-rust
     bool isNoteOn() const;
     // Also returns true if the message type is NoteOn but the velocity is 0
     bool isNoteOff() const;
     bool isNote() const;
     int getKeyNumber() const;
+    // DONE-rust
     int getVelocity() const;
     int getControllerNumber() const;
     int getControlValue() const;
